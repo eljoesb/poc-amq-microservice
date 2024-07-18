@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  activemq-artemis:
+    image: apache/activemq-artemis:latest-alpine
+    container_name: mycontainer
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+    environment:
+      ARTEMIS_USER: myUser
+      ARTEMIS_PASSWORD: myPass
+    networks:
+      - amqp-quarkus-local
+    restart: unless-stopped
+
+networks:
+  amqp-quarkus-local:
+    name: amqp-quarkus-local
